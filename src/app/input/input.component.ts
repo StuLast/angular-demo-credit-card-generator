@@ -7,9 +7,17 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./input.component.css'],
 })
 export class InputComponent implements OnInit {
-  @Input() control: FormControl | null = null;
-
-  constructor() {}
+  @Input() public control:FormControl
+  @Input() label: string =''
+  @Input() placeholder: string=''
+  constructor(
+    
+  ) {}
 
   ngOnInit(): void {}
+
+  hasErrors() {
+    const {dirty, touched, errors} =this.control
+    return dirty && touched  && errors
+  }
 }

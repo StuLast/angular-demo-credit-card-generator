@@ -1,14 +1,29 @@
-<div class="formControl">
-  <label for="name">Name:</label>
-  <input formControlName="name" type="text" />
-  <ng-container *ngIf="control.errors">
-    <div *ngIf="control.touched && control.dirty && control.errors['required']">
+
+<div class="field">
+  <label class="label">{{label}}</label>
+  <div class="control">
+    <input class="input"
+    [ngClass]="{'is-danger': hasErrors()}"
+    [formControl]="control" type="text"
+    [placeholder]="placeholder" />
+  </div>
+  <ng-container *ngIf="hasErrors()">
+    <div class="help is-danger" *ngIf="control.errors['required']">
       Value is required.
     </div>
-    <div *ngIf="control.errors['minlength']">
+
+    <div class="help is-danger" *ngIf="control.errors['minlength']">
       Minimum length needs to be at least
       {{ control.errors["minlength"].requiredLength }}
       characters long.
+    </div>
+
+    <div class="help is-danger" *ngIf="control.errors['maxlength']">
+      Max length is {{control.errors['maxlength'].requiredLength}} characters long
+    </div>
+
+    <div class="help is-danger" *ngIf="control.errors['pattern']">
+      Invalid format
     </div>
   </ng-container>
 </div>

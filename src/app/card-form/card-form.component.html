@@ -1,5 +1,11 @@
-<form [formGroup]="cardForm">
-  <app-input [control]="cardForm.get('name')"></app-input>
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit($event)">
+  <div class="formControl">
+    <app-input [control]="$any(cardForm).get('name')" [label]="'Name'"></app-input>
+    <app-input [control]="$any(cardForm).get('cardNumber')" [label]="'Card Number'" [placeholder]="'xxxxxxxxxxxxxxxx'"></app-input>
+    <app-input [control]="$any(cardForm).get('expiration')" [label]="'Expiration'" [placeholder]="'mm/yy'"></app-input>
+    <app-input [control]="$any(cardForm).get('securityCode')" [label]="'Security Code'" [placeholder]="'000'"></app-input>
+  </div>
+  <button class="button is-primary" [disabled]="cardForm.invalid" type="submit">submit</button>
 </form>
 <hr />
 <!--@Todo - remove before production-->
