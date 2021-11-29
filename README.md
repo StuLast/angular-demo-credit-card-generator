@@ -1,5 +1,11 @@
 # CreditCardGenerator
 
+This simple demo app looks at the dynamic nature of Angular Reactive forms, and the benefit of extending some of the forms component classes, in particular for validation and formatting purposes.
+
+You can see the live demo at [https://angular-card-generator-demo.herokuapp.com/](https://angular-card-generator-demo.herokuapp.com/)
+
+# Angular Stuff ...
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
 ## Development server
