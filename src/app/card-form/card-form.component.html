@@ -1,14 +1,29 @@
-<form [formGroup]="cardForm" (ngSubmit)="onSubmit($event)">
-  <div class="formControl">
-    <app-input [control]="$any(cardForm).get('name')" [label]="'Name'"></app-input>
-    <app-input [control]="$any(cardForm).get('cardNumber')" [label]="'Card Number'" [placeholder]="'xxxxxxxxxxxxxxxx'"></app-input>
-    <app-input [control]="$any(cardForm).get('expiration')" [label]="'Expiration'" [placeholder]="'mm/yy'"></app-input>
-    <app-input [control]="$any(cardForm).get('securityCode')" [label]="'Security Code'" [placeholder]="'000'"></app-input>
+<div class="columns">
+  <div class="column">
+    <app-card
+      [name]="cardForm.get('name').value"
+      [cardNumber]="cardForm.get('cardNumber').value"  
+      [expiration]="cardForm.get('expiration').value"
+    ></app-card>
   </div>
-  <button class="button is-primary" [disabled]="cardForm.invalid" type="submit">submit</button>
-</form>
-<hr />
-<!--@Todo - remove before production-->
-<div>Form contents: {{ cardForm.value | json }}</div>
-<div>Form is valid: {{ cardForm.valid }}</div>
-<div>Errors around name {{ cardForm.controls["name"].errors | json }}</div>
+  <div class="column">
+    <form [formGroup]="cardForm" (ngSubmit)="onSubmit($event)">
+      <div class="formControl">
+        <app-input [control]="$any(cardForm).get('name')" [label]="'Name'"></app-input>
+        <app-input [control]="$any(cardForm).get('cardNumber')" [label]="'Card Number'" [placeholder]="'xxxx xxxx xxxx xxxx'"></app-input>
+        <div class="columns">
+          <div class="column">
+            <app-input [control]="$any(cardForm).get('expiration')" [label]="'Expiration'" [placeholder]="'mm/yy'"></app-input>
+          </div>
+          <div class="column">
+            <app-input [control]="$any(cardForm).get('securityCode')" [label]="'Security Code'" [placeholder]="'000'"></app-input>
+          </div>
+        </div>
+      </div>
+      <div class="buttons" style="margin-top: 20px">
+        <button class="button is-primary" [disabled]="cardForm.invalid" type="submit">submit</button>
+        <button class="button is-warning"  (click)="onReset()" type="button">reset</button>
+      </div>
+    </form>
+  </div>
+</div>

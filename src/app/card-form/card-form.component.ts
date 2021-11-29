@@ -15,8 +15,8 @@ export class CardFormComponent implements OnInit {
     ]),
     cardNumber: new FormControl('', [
       Validators.required,
-      Validators.minLength(16),
-      Validators.maxLength(16),
+      Validators.minLength(19),
+      Validators.maxLength(19),
       Validators.pattern(/^([0-9]{4})([0-9]{4})([0-9]{4})([0-9]{4})$/)
     ]),
     expiration: new DateFormControl('', [
@@ -37,8 +37,12 @@ export class CardFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit = (event: Event) => {
+  onSubmit = (event: Event):void => {
     event.preventDefault();
+  }
+
+  onReset = ():void => {
+    this.cardForm.reset()
   }
 
 }
